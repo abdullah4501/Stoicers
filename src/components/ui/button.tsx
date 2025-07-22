@@ -18,12 +18,18 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // BASIQ specific variants
+        hero: "bg-basiq-beige text-basiq-dark shadow-elegant hover:bg-basiq-beige/90 transition-smooth",
+        "hero-outline": "border border-basiq-beige bg-transparent text-basiq-beige hover:bg-basiq-beige hover:text-basiq-dark transition-smooth",
+        "basiq-dark": "bg-basiq-dark text-basiq-beige shadow-card hover:bg-basiq-dark/90 transition-smooth",
+        "basiq-minimal": "bg-transparent text-basiq-beige hover:bg-basiq-beige/10 transition-smooth"
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
+        xl: "h-12 rounded-md px-10 text-base"
       },
     },
     defaultVariants: {
