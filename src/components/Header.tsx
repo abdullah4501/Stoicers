@@ -2,13 +2,14 @@ import { Search, ShoppingCart, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
+import stoicersLogoWhite from "@/assets/stoicers-logo-white.png";
 
 const Header = () => {
   return (
     <header className="bg-background border-b border-border">
       {/* Announcement Bar */}
-      <div className="bg-basiq-dark text-basiq-beige text-center py-2 text-sm">
-        NEW ARRIVALS JUST LANDED
+      <div className="bg-gradient-to-r from-stoicers-dark to-stoicers-accent text-stoicers-gold text-center py-3 text-sm font-medium tracking-wide">
+        ✦ NEW STOICERS COLLECTION NOW AVAILABLE ✦
       </div>
       
       {/* Main Header */}
@@ -16,24 +17,28 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-foreground hover:text-basiq-beige transition-colors">
+            <Link to="/" className="text-foreground hover:text-stoicers-gold transition-colors font-medium tracking-wide">
               Home
             </Link>
-            <Link to="/brand-story" className="text-foreground hover:text-basiq-beige transition-colors">
+            <Link to="/brand-story" className="text-foreground hover:text-stoicers-gold transition-colors font-medium tracking-wide">
               Brand Story
             </Link>
-            <Link to="/products" className="text-foreground hover:text-basiq-beige transition-colors">
+            <Link to="/products" className="text-foreground hover:text-stoicers-gold transition-colors font-medium tracking-wide">
               Products
             </Link>
-            <Link to="/contact" className="text-foreground hover:text-basiq-beige transition-colors">
+            <Link to="/contact" className="text-foreground hover:text-stoicers-gold transition-colors font-medium tracking-wide">
               Contact
             </Link>
           </nav>
           
           {/* Logo */}
           <div className="flex-1 flex justify-center md:flex-none">
-            <Link to="/" className="text-2xl font-bold text-foreground tracking-wider">
-              BASIQ
+            <Link to="/" className="flex items-center">
+              <img 
+                src={stoicersLogoWhite} 
+                alt="Stoicers" 
+                className="h-10 w-auto brightness-0 invert"
+              />
             </Link>
           </div>
           

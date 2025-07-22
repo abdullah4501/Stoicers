@@ -39,20 +39,26 @@ All colors MUST be HSL.
 
     --radius: 0.5rem;
 
-    /* BASIQ specific tokens */
-    --basiq-beige: 36 45% 85%;
-    --basiq-brown: 30 30% 25%;
-    --basiq-dark: 222 20% 8%;
-    --basiq-dark-secondary: 222 15% 12%;
-    --basiq-warm: 36 25% 60%;
+    /* Stoicers specific tokens */
+    --stoicers-gold: 36 45% 85%;
+    --stoicers-bronze: 30 30% 25%;
+    --stoicers-dark: 222 20% 8%;
+    --stoicers-dark-secondary: 222 15% 12%;
+    --stoicers-warm: 36 25% 60%;
+    --stoicers-accent: 210 40% 20%;
+    --stoicers-highlight: 45 85% 70%;
     
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--basiq-dark)), hsl(var(--basiq-dark-secondary)));
-    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--basiq-dark-secondary)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--stoicers-dark)), hsl(var(--stoicers-dark-secondary)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--stoicers-dark-secondary)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--stoicers-accent)), hsl(var(--stoicers-dark)));
+    --gradient-gold: linear-gradient(135deg, hsl(var(--stoicers-gold)), hsl(var(--stoicers-highlight)));
     
     /* Shadows */
-    --shadow-elegant: 0 10px 30px -10px hsl(var(--basiq-beige) / 0.1);
-    --shadow-card: 0 4px 20px -4px hsl(var(--basiq-beige) / 0.05);
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--stoicers-gold) / 0.15);
+    --shadow-card: 0 4px 20px -4px hsl(var(--stoicers-gold) / 0.08);
+    --shadow-glow: 0 0 40px hsl(var(--stoicers-gold) / 0.2);
+    --shadow-deep: 0 20px 60px -20px hsl(var(--stoicers-dark) / 0.8);
     
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

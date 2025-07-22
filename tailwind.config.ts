@@ -52,22 +52,28 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// BASIQ specific colors
-				basiq: {
-					beige: 'hsl(var(--basiq-beige))',
-					brown: 'hsl(var(--basiq-brown))',
-					dark: 'hsl(var(--basiq-dark))',
-					'dark-secondary': 'hsl(var(--basiq-dark-secondary))',
-					warm: 'hsl(var(--basiq-warm))'
+				// Stoicers specific colors
+				stoicers: {
+					gold: 'hsl(var(--stoicers-gold))',
+					bronze: 'hsl(var(--stoicers-bronze))',
+					dark: 'hsl(var(--stoicers-dark))',
+					'dark-secondary': 'hsl(var(--stoicers-dark-secondary))',
+					warm: 'hsl(var(--stoicers-warm))',
+					accent: 'hsl(var(--stoicers-accent))',
+					highlight: 'hsl(var(--stoicers-highlight))'
 				}
 			},
 			backgroundImage: {
 				'gradient-hero': 'var(--gradient-hero)',
-				'gradient-card': 'var(--gradient-card)'
+				'gradient-card': 'var(--gradient-card)',
+				'gradient-accent': 'var(--gradient-accent)',
+				'gradient-gold': 'var(--gradient-gold)'
 			},
 			boxShadow: {
 				'elegant': 'var(--shadow-elegant)',
-				'card': 'var(--shadow-card)'
+				'card': 'var(--shadow-card)',
+				'glow': 'var(--shadow-glow)',
+				'deep': 'var(--shadow-deep)'
 			},
 			transitionTimingFunction: {
 				'smooth': 'var(--transition-smooth)',
@@ -94,11 +100,22 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.6s ease-out'
 			}
 		}
 	},
