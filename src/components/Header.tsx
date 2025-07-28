@@ -2,7 +2,7 @@ import { Search, ShoppingCart, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
-import stoicersLogoWhite from "@/assets/stoicers-logo-white.png";
+import stoicersLogoWhite from "@/assets/white.png";
 
 const Header = () => {
   return (

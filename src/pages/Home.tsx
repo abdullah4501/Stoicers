@@ -3,8 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import heroImage from "@/assets/hero-image.jpg";
-import tshirtBeige from "@/assets/tshirt-beige.jpg";
-import trousersBrown from "@/assets/trousers-brown.jpg";
+import tshirtBeige from "@/assets/tshirt_display.jpeg";
+import model2 from "@/assets/model2.jpeg";
 import modelHero from "@/assets/model-hero.jpg";
 
 const Home = () => {
@@ -62,7 +62,7 @@ const Home = () => {
               <CardContent className="p-0">
                 <div className="aspect-square bg-stoicers-dark-secondary rounded-t-lg overflow-hidden">
                   <img 
-                    src={trousersBrown} 
+                    src={model2} 
                     alt="The Stoic Trouser" 
                     className="w-full h-full object-cover rounded-t-lg group-hover:scale-110 transition-transform duration-500"
                   />

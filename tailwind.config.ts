@@ -54,13 +54,13 @@ export default {
 				},
 				// Stoicers specific colors
 				stoicers: {
-					gold: 'hsl(var(--stoicers-gold))',
+					gold: '#ffffff',
 					bronze: 'hsl(var(--stoicers-bronze))',
 					dark: 'hsl(var(--stoicers-dark))',
 					'dark-secondary': 'hsl(var(--stoicers-dark-secondary))',
-					warm: 'hsl(var(--stoicers-warm))',
+					warm: '#ececec',
 					accent: 'hsl(var(--stoicers-accent))',
-					highlight: 'hsl(var(--stoicers-highlight))'
+					highlight: '#f2f2f2'
 				}
 			},
 			backgroundImage: {

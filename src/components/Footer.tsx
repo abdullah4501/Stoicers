@@ -2,7 +2,7 @@ import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
-import stoicersLogoWhite from "@/assets/stoicers-logo-white.png";
+import stoicersLogoWhite from "@/assets/white.png";
 
 const Footer = () => {
   return (
@@ -19,7 +19,6 @@ const Footer = () => {
                 alt="Stoicers" 
                 className="h-12 w-auto brightness-0 invert mr-4"
               />
-              <h3 className="text-2xl font-bold">STOICERS</h3>
             </div>
             <p className="text-stoicers-warm leading-relaxed mb-6 max-w-md">
               Embodying ancient wisdom through modern design. Clothing for those who value substance, 
