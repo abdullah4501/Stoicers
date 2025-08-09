@@ -4,10 +4,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import tshirtBeige from "@/assets/tshirt-beige.jpg";
-import tshirtGallery1 from "@/assets/tshirt-gallery-1.jpg";
-import tshirtGallery2 from "@/assets/tshirt-gallery-2.jpg";
-import tshirtGallery3 from "@/assets/tshirt-gallery-3.jpg";
-import trousersBrown from "@/assets/trousers-brown.jpg";
+import tshirtGallery1 from "@/assets/1.png";
+import tshirtGallery2 from "@/assets/1.png";
+import tshirtGallery3 from "@/assets/1.png";
+import trousersBrown from "@/assets/1.png";
 
 const ProductDetail = () => {
   const { slug } = useParams();

@@ -1,65 +1,76 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Layout from "@/components/Layout";
-import tshirtBeige from "@/assets/tshirt-beige.jpg";
-import trousersBrown from "@/assets/trousers-brown.jpg";
+import product2 from "@/assets/3.png";
+import product1 from "@/assets/1.png";
+import product4 from "@/assets/4.png";
+import product5 from "@/assets/5.png";
+import product6 from "@/assets/6.png";
+import product7 from "@/assets/DSC00163.jpg";
+import product8 from "@/assets/DSC00174.jpg";
+import product9 from "@/assets/DSC00184.jpg";
 
 const Products = () => {
   const products = [
-    {
-      id: 1,
-      name: "The Everyday Trouser – Walnut Brown (Unisex)",
-      price: "Rs.6,850.00 PKR",
-      image: trousersBrown,
-      slug: "everyday-trouser-walnut-brown"
-    },
-    {
-      id: 2,
-      name: "The Classic Tee – Beige (Unisex)",
-      price: "Rs.4,850.00 PKR",
-      image: tshirtBeige,
-      slug: "classic-tee-beige"
-    }
+    { id: 1, name: "The Classic Tee — Beige (Unisex)", price: "Rs.4,850.00 PKR", image: product1, alt: "STOICERS Classic Tee Beige - minimalist t-shirt" },
+    { id: 2, name: "The Everyday Trouser — Walnut Brown (Unisex)", price: "Rs.6,850.00 PKR", image: product2, alt: "STOICERS Everyday Trouser Walnut Brown - unisex pants" },
+    { id: 3, name: "The Classic Tee — On-Body", price: "Rs.4,850.00 PKR", image: product7, alt: "STOICERS Classic Tee on model - modern minimalist" },
+    { id: 4, name: "The Classic Tee — Studio Shot", price: "Rs.4,850.00 PKR", image: product4, alt: "STOICERS Classic Tee studio shot - neutral tone" },
+    { id: 5, name: "The Everyday Trouser — Charcoal Grey (Unisex)", price: "Rs.6,850.00 PKR", image: product5, alt: "STOICERS Everyday Trouser Charcoal Grey - tailored fit" },
+    { id: 6, name: "The Classic Tee — Black (Unisex)", price: "Rs.4,850.00 PKR", image: product6, alt: "STOICERS Classic Tee Black - timeless basics" },
   ];
+
+  const productLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: products.map((p, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Product",
+        name: p.name,
+        image: p.image,
+        brand: { "@type": "Brand", name: "STOICERS" },
+      },
+    })),
+  };
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">BASIQ — Where Luxury Meets Simplicity</h1>
-          <p className="text-basiq-warm max-w-3xl mx-auto">
-            BASIQ is where timeless design meets modern minimalism. We craft refined wardrobe staples with 
-            premium fabrics, clean silhouettes, and quiet confidence. No noise. Just everyday luxury 
-            —built to last, made to live in.
+    <div className="container mx-auto px-4 py-16">
+        <header className="mb-12 text-center">
+          <h1 className="text-4xl font-bold mb-3">STOICERS Products</h1>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Modern essentials inspired by Stoic philosophy — wisdom, courage, discipline, and justice.
           </p>
-        </div>
+        </header>
 
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-8">Summer collection</h2>
-          
-          <div className="grid md:grid-cols-2 gap-8">
+        <section aria-label="Product grid">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((product) => (
-              <Link key={product.id} to={`/product/${product.slug}`}>
-                <Card className="bg-card border-border shadow-card hover:shadow-elegant transition-shadow">
+              <article key={product.id} className="group">
+                <Card className="bg-card border border-border overflow-hidden transition-shadow group-hover:shadow-md">
                   <CardContent className="p-0">
-                    <div className="aspect-square bg-basiq-dark-secondary rounded-t-lg">
-                      <img 
-                        src={product.image} 
-                        alt={product.name}
-                        className="w-full h-full object-cover rounded-t-lg"
+                    <AspectRatio ratio={4/5}>
+                      <img
+                        src={product.image}
+                        alt={product.alt}
+                        loading="lazy"
+                        className="h-full w-full object-cover"
                       />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-lg font-medium mb-2">{product.name}</h3>
-                      <p className="text-basiq-beige font-bold">{product.price}</p>
+                    </AspectRatio>
+                    <div className="p-4">
+                      <h3 className="text-base font-medium leading-tight">{product.name}</h3>
+                      <p className="mt-1 text-sm text-muted-foreground">{product.price}</p>
                     </div>
                   </CardContent>
                 </Card>
-              </Link>
+              </article>
             ))}
           </div>
-        </div>
+        </section>
       </div>
     </Layout>
   );

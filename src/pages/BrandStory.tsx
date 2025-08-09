@@ -1,72 +1,55 @@
 import Layout from "@/components/Layout";
-import tshirtFlat from "@/assets/tshirt-flat.jpg";
-import trousersFlat from "@/assets/trousers-flat.jpg";
+import tshirtFlat from "@/assets/5.png";
+import tshirtFlat2 from "@/assets/model2.jpeg";
+import tshirtFlat3 from "@/assets/IMG_4421.jpg";
+import tshirtFlat4 from "@/assets/IMG_4439.jpg";
 
 const BrandStory = () => {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Side - Brand Info */}
-          <div>
-            <h1 className="text-6xl font-bold mb-8">BASIQ</h1>
-            
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-2xl font-bold mb-4">BASIQ - Brand Story</h2>
-                <div className="space-y-4 text-basiq-warm leading-relaxed">
-                  <p>
-                    In a world of fleeting trends, BASIQ was born to bring timelessness back to 
-                    the everyday. Founded with the belief that luxury isn't loud, BASIQ 
-                    redefines basics with understated elegance, refined fabrics, and a classic 
-                    silhouette that endures.
-                  </p>
-                  
-                  <p>
-                    Our journey begins with the essentials—a perfectly tailored tee and a refined pair of trousers—crafted for 
-                    those who value simplicity, quality, and invention. Each piece is designed to be a foundation, not a 
-                    statement. An anchor in your wardrobe, not a moment in the spotlight.
-                  </p>
-                  
-                  <p>
-                    At BASIQ, we don't chase trends. We create them—rich textures, neutral tones, and timeless 
-                    cuts that never show they're trying. Our fabric-first approach ensures every garment feels as good as it looks, 
-                    offering comfort, durability, and sophistication in every stitch.
-                  </p>
-                  
-                  <p>
-                    This is daily wear, done differently. No over-design. No compromise. Just refined, reliable pieces that 
-                    work harder than trends ever could.
-                  </p>
-                  
-                  <p className="italic font-medium">
-                    Live simply. Dress better. Wear BASIQ.
-                  </p>
-                </div>
+<section className="container mx-auto px-4 py-16">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Left Side - Brand Info */}
+            <div>
+              <header className="mb-8">
+                <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight">STOICERS</h1>
+              </header>
+
+              <div className="space-y-6 text-muted-foreground leading-relaxed">
+                <h2 className="text-2xl font-semibold text-foreground">Brand Story</h2>
+                <p>
+                  STOICERS is a modern clothing brand inspired by Stoic philosophy—grounded in the virtues of
+                  wisdom, courage, discipline, and justice. We craft clothing with purpose, where every piece mirrors a mindset.
+                </p>
+                <p>
+                  Each piece blends minimalist design with meaningful quotes and artwork, turning timeless values into wearable statements.
+                  We design foundations, not fads—essentials that outlast the season and elevate the everyday.
+                </p>
+                <p>
+                  Our fabric-first approach ensures comfort, durability, and a refined silhouette. No over-design. No noise. Just intentional
+                  details that speak softly and carry weight.
+                </p>
+                <p className="italic font-medium text-foreground">Live simply. Dress better. Wear STOICERS.</p>
               </div>
             </div>
+
+            {/* Right Side - Product Images */}
+            <aside className="grid grid-cols-2 gap-6">
+              <figure className="group rounded-lg overflow-hidden border border-border bg-card">
+                <img loading="lazy" src={tshirtFlat} alt="STOICERS minimalist tee flat-lay with stoic quote" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+              </figure>
+              <figure className="group rounded-lg overflow-hidden border border-border bg-card">
+                <img loading="lazy" src={tshirtFlat2} alt="STOICERS outfit on model in neutral studio" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+              </figure>
+              <figure className="group rounded-lg overflow-hidden border border-border bg-card">
+                <img loading="lazy" src={tshirtFlat3} alt="STOICERS fabric detail with embossed quote" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+              </figure>
+              <figure className="group rounded-lg overflow-hidden border border-border bg-card">
+                <img loading="lazy" src={tshirtFlat4} alt="STOICERS hoodie with virtues-inspired artwork" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+              </figure>
+            </aside>
           </div>
-          
-          {/* Right Side - Product Images */}
-          <div className="space-y-8">
-            <div className="bg-basiq-dark-secondary rounded-lg p-8">
-              <img 
-                src={tshirtFlat} 
-                alt="Classic Tee" 
-                className="w-full rounded-lg"
-              />
-            </div>
-            
-            <div className="bg-basiq-dark-secondary rounded-lg p-8">
-              <img 
-                src={trousersFlat} 
-                alt="Everyday Trouser" 
-                className="w-full rounded-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+        </section>
     </Layout>
   );
 };
