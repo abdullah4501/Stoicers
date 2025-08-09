@@ -7,6 +7,8 @@ import tshirtBeige from "@/assets/tshirt_display.jpeg";
 import model2 from "@/assets/model2.jpeg";
 import modelHero from "@/assets/model-hero.jpg";
 import collectionImage from "@/assets/DSC00171.jpg";
+import product1 from "@/assets/3.png";
+import product2 from "@/assets/6.png";
 
 const Home = () => {
   return (
@@ -72,15 +74,16 @@ const Home = () => {
               <CardContent className="p-0">
                 <div className="aspect-square bg-stoicers-dark-secondary rounded-t-lg overflow-hidden">
                   <img
-                    src={model2}
+                    src={product1}
                     alt="The Stoic Trouser"
                     className="w-full h-full object-cover rounded-t-lg group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
                 <div className="p-6 bg-gradient-to-b from-card to-stoicers-dark-secondary">
-                  <h3 className="text-lg font-medium mb-2 text-stoicers-gold">The Stoic Trouser - Walnut Brown (Unisex)</h3>
-                  <p className="text-stoicers-highlight font-bold text-xl">Rs.6,850.00 PKR</p>
-                  <p className="text-stoicers-warm text-sm mt-2">Crafted for the modern philosopher</p>
+                  <h3 className="text-lg font-medium mb-2 text-stoicers-gold">Memento Mori" Oversized Tee – by STOICERS</h3>
+                  <p className="text-stoicers-highlight font-bold text-xl">3,000 PKR</p>
+                  <p className="text-stoicers-warm text-sm mt-2">CLive fully. Fearlessly. This t-shirt serves as a quiet rebellion against passivity. Inspired by the Stoic call to live with intention, its bold artwork and quote are a reminder: when your time comes, make sure you were truly living.
+                  Crafted from 220 GSM, 100% French Terry Cotton for lasting comfort and structure.</p>
                 </div>
               </CardContent>
             </Card>
@@ -90,15 +93,16 @@ const Home = () => {
               <CardContent className="p-0">
                 <div className="aspect-square bg-stoicers-dark-secondary rounded-t-lg overflow-hidden">
                   <img
-                    src={tshirtBeige}
+                    src={product2}
                     alt="The Wisdom Tee"
                     className="w-full h-full object-cover rounded-t-lg group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
                 <div className="p-6 bg-gradient-to-b from-card to-stoicers-dark-secondary">
-                  <h3 className="text-lg font-medium mb-2 text-stoicers-gold">The Wisdom Tee - Beige (Unisex)</h3>
-                  <p className="text-stoicers-highlight font-bold text-xl">Rs.4,850.00 PKR</p>
-                  <p className="text-stoicers-warm text-sm mt-2">Simplicity in its purest form</p>
+                  <h3 className="text-lg font-medium mb-2 text-stoicers-gold">Invincible" Oversized Tee – by STOICERS</h3>
+                  <p className="text-stoicers-highlight font-bold text-xl">3,000 PKR</p>
+                  <p className="text-stoicers-warm text-sm mt-2">This t-shirt serves as a virtue for those who refuse to quit, who won't back down or give in, no matter the cost. Inspired by the core Stoic principle: True strength lies not in survival, but in how you choose to live. Wear it not just to be seen, but to be remembered for what you stood for.
+                  Crafted from 220 GSM, 100% French Terry Cotton for lasting comfort and structure.</p>
                 </div>
               </CardContent>
             </Card>

@@ -14,12 +14,8 @@ import product9 from "@/assets/DSC00184.jpg";
 
 const Products = () => {
   const products = [
-    { id: 1, name: "The Classic Tee — Beige (Unisex)", price: "Rs.4,850.00 PKR", image: product1, alt: "STOICERS Classic Tee Beige - minimalist t-shirt" },
-    { id: 2, name: "The Everyday Trouser — Walnut Brown (Unisex)", price: "Rs.6,850.00 PKR", image: product2, alt: "STOICERS Everyday Trouser Walnut Brown - unisex pants" },
-    { id: 3, name: "The Classic Tee — On-Body", price: "Rs.4,850.00 PKR", image: product7, alt: "STOICERS Classic Tee on model - modern minimalist" },
-    { id: 4, name: "The Classic Tee — Studio Shot", price: "Rs.4,850.00 PKR", image: product4, alt: "STOICERS Classic Tee studio shot - neutral tone" },
-    { id: 5, name: "The Everyday Trouser — Charcoal Grey (Unisex)", price: "Rs.6,850.00 PKR", image: product5, alt: "STOICERS Everyday Trouser Charcoal Grey - tailored fit" },
-    { id: 6, name: "The Classic Tee — Black (Unisex)", price: "Rs.4,850.00 PKR", image: product6, alt: "STOICERS Classic Tee Black - timeless basics" },
+    { id: 2, name: '"Memento Mori" Oversized Tee – by STOICERS', price: "3,000 PKR", image: product2, alt: '"Memento Mori" Oversized Tee – by STOICERS' },
+    { id: 6, name: '"Invincible" Oversized Tee – by STOICERS', price: "Rs.3,000 PKR", image: product6, alt: '"Invincible" Oversized Tee – by STOICERS' },
   ];
 
   const productLd = {
@@ -48,19 +44,17 @@ const Products = () => {
         </header>
 
         <section aria-label="Product grid">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
             {products.map((product) => (
               <article key={product.id} className="group">
                 <Card className="bg-card border border-border overflow-hidden transition-shadow group-hover:shadow-md">
                   <CardContent className="p-0">
-                    <AspectRatio ratio={4/5}>
                       <img
                         src={product.image}
                         alt={product.alt}
                         loading="lazy"
                         className="h-full w-full object-cover"
                       />
-                    </AspectRatio>
                     <div className="p-4">
                       <h3 className="text-base font-medium leading-tight">{product.name}</h3>
                       <p className="mt-1 text-sm text-muted-foreground">{product.price}</p>

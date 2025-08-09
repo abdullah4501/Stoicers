@@ -23,9 +23,9 @@ const ProductDetail = () => {
   ];
 
   const product = {
-    name: "THE CLASSIC TEE - BEIGE (UNISEX)",
-    price: "Rs.4,850.00",
-    description: "Meet the shirt that defines effortless refinement. Crafted from 100% combed cotton, the Beige Classic Tee delivers timeless sophistication with a clean silhouette and breathable softness. Designed for daily wear, it's structured to hold its shape and feel luxurious all day long."
+    name: '"Memento Mori" Oversized Tee – by STOICERS',
+    price: "Rs.3,000",
+    description: 'Quote: “When Death finds you, may it find you Alive.”'
   };
 
   const relatedProduct = {
@@ -77,11 +77,6 @@ const ProductDetail = () => {
               <p className="text-2xl font-bold text-basiq-beige">{product.price}</p>
             </div>
             
-            <div>
-              <Link to="/size-chart" className="text-basiq-beige underline hover:no-underline">
-                VIEW SIZE CHART
-              </Link>
-            </div>
             
             <div>
               <h3 className="text-lg font-medium mb-4">Select Size</h3>
