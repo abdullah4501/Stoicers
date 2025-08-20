@@ -12,11 +12,11 @@ const BrandStory = () => {
           {/* Left Side - Brand Info */}
           <div>
             <header className="mb-8">
-              <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight">STOICERS</h1>
+              <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight catchy bg-gradient-to-r from-stoicers-gold to-stoicers-highlight bg-clip-text text-transparent">STOICERS</h1>
             </header>
 
-            <div className="space-y-6 text-muted-foreground leading-relaxed">
-              <h2 className="text-2xl font-semibold text-foreground">Brand Story</h2>
+            <div className="space-y-6 text-muted-foreground leading-relaxed text-stoicers-warm">
+              <h2 className="text-3xl font-bold text-foreground catchy bg-gradient-to-r from-stoicers-gold to-stoicers-highlight bg-clip-text text-transparent">Brand Story</h2>
               <p>
                 STOICERS is a modern clothing brand inspired by Stoic philosophy—grounded in the virtues of
                 wisdom, courage, discipline, and justice. We craft clothing with purpose, where every piece mirrors a mindset.
@@ -29,7 +29,7 @@ const BrandStory = () => {
                 Our fabric-first approach ensures comfort, durability, and a refined silhouette. No over-design. No noise. Just intentional
                 details that speak softly and carry weight.
               </p>
-              <p className="italic font-medium text-foreground">Live simply. Dress better. Wear STOICERS.</p>
+              <p className=" font-semibold text-xl text-foreground catchy">Live simply. Dress better. Wear STOICERS.</p>
             </div>
           </div>
 

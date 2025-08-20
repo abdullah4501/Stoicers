@@ -1,16 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { ShoppingCart } from "lucide-react";
 import Layout from "@/components/Layout";
 import product2 from "@/assets/3.png";
-import product1 from "@/assets/1.png";
-import product4 from "@/assets/4.png";
-import product5 from "@/assets/5.png";
 import product6 from "@/assets/6.png";
-import product7 from "@/assets/DSC00163.jpg";
-import product8 from "@/assets/DSC00174.jpg";
-import product9 from "@/assets/DSC00184.jpg";
+
+// Slug utility
+const slugify = (str) =>
+  str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)+/g, "");
 
 const Products = () => {
   const products = [
@@ -18,51 +19,56 @@ const Products = () => {
     { id: 6, name: '"Invincible" Oversized Tee – by STOICERS', price: "Rs.3,000 PKR", image: product6, alt: '"Invincible" Oversized Tee – by STOICERS' },
   ];
 
-  const productLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    itemListElement: products.map((p, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "Product",
-        name: p.name,
-        image: p.image,
-        brand: { "@type": "Brand", name: "STOICERS" },
-      },
-    })),
-  };
-
   return (
     <Layout>
-    <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-16">
         <header className="mb-12 text-center">
-          <h1 className="text-4xl font-bold mb-3">STOICERS Products</h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Modern essentials inspired by Stoic philosophy — wisdom, courage, discipline, and justice.
+          <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight catchy bg-gradient-to-r from-stoicers-gold to-stoicers-highlight bg-clip-text text-transparent">STOICERS Products</h1>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-stoicers-warm">
+            Modern essentials inspired by Stoic philosophy wisdom, courage, discipline, and justice.
           </p>
         </header>
 
         <section aria-label="Product grid">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
-            {products.map((product) => (
-              <article key={product.id} className="group">
-                <Card className="bg-card border border-border overflow-hidden transition-shadow group-hover:shadow-md">
-                  <CardContent className="p-0">
-                      <img
-                        src={product.image}
-                        alt={product.alt}
-                        loading="lazy"
-                        className="h-full w-full object-cover"
-                      />
-                    <div className="p-4">
-                      <h3 className="text-base font-medium leading-tight">{product.name}</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">{product.price}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </article>
-            ))}
+          <div className="grid md:grid-cols-2 gap-8">
+            {products.map((product) => {
+              const slug = slugify(product.name);
+              return (
+                <article key={product.id} className="group flex">
+                  <Link
+                    to={`/product/${slug}`}
+                    className="w-full" // makes the whole card clickable
+                    style={{ textDecoration: 'none' }} // removes default link underline
+                  >
+                    <Card className="bg-card border-border shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105 max-w- w-full mx-auto flex flex-col">
+                      <CardContent className="p-0 flex-1 flex flex-col">
+                        <div className="w-full bg-stoicers-dark-secondary rounded-t-2xl overflow-hidden">
+                          <img
+                            src={product.image}
+                            alt={product.alt}
+                            className="w-full h-[500px] object-cover rounded-t-2xl group-hover:scale-110 transition-transform duration-500"
+                            draggable={false}
+                          />
+                        </div>
+                        <div className="p-4 bg-gradient-to-b from-card to-stoicers-dark-secondary flex-1 flex flex-col justify-center items-center rounded-b-2xl">
+                          <h3 className="text-base font-semibold mb-1 text-stoicers-gold text-center">{product.name}</h3>
+                          <p className="text-stoicers-highlight font-bold text-lg text-center">{product.price}</p>
+                          <Button
+                            
+                            className="mt-3"
+                            onClick={e => {
+                              e.preventDefault();
+                            }}
+                          >
+                            <ShoppingCart />
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </article>
+              );
+            })}
           </div>
         </section>
       </div>

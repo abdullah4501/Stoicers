@@ -5,6 +5,12 @@
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
+@font-face {
+  font-family: 'Catchy Mager';
+  src: url('./assets/fonts/catchy-mager.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 @layer base {
   :root {
@@ -74,4 +80,8 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.catchy{
+  font-family: 'Catchy Mager', sans-serif !important;
 }

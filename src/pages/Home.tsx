@@ -27,7 +27,7 @@ const Home = () => {
         {/* Hero Content */}
         <div className="relative z-20 text-center max-w-4xl px-4">
           <div className="animate-fade-in">
-            <h1 className="text-6xl md:text-8xl font-bold text-stoicers-gold mb-6 tracking-wider bg-gradient-to-r from-stoicers-gold to-stoicers-highlight bg-clip-text text-transparent">
+            <h1 className="text-6xl md:text-8xl font-bold text-stoicers-gold mb-6 tracking-wider bg-gradient-to-r from-stoicers-gold to-stoicers-highlight bg-clip-text text-transparent catchy">
               STOICERS
             </h1>
             <p className="text-xl md:text-2xl text-stoicers-gold mb-8 italic font-light tracking-wide">
@@ -60,8 +60,8 @@ const Home = () => {
       <section className="py-20 bg-gradient-to-b from-background to-stoicers-dark-secondary">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-stoicers-gold to-stoicers-highlight bg-clip-text text-transparent">
-              STOICERS SUMMER DROP 25'
+            <h2 className="text-6xl font-bold mb-6 bg-gradient-to-r from-stoicers-gold to-stoicers-highlight bg-clip-text text-transparent catchy">
+              Stoicers Summer Drop 25'
             </h2>
             <p className="text-stoicers-warm text-lg max-w-2xl mx-auto">
               Embrace the wisdom of ancient philosophy with our modern interpretations of timeless wardrobe essentials.
@@ -69,40 +69,36 @@ const Home = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Trousers */}
-            <Card className="bg-card border-border shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105 group">
-              <CardContent className="p-0">
-                <div className="aspect-square bg-stoicers-dark-secondary rounded-t-lg overflow-hidden">
+            <Card className="bg-card border-border shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105 max-h-[580px] mx-auto">
+              <CardContent className="p-0 h-full flex flex-col">
+                <div className="aspect-[4/5] bg-stoicers-dark-secondary rounded-t-lg overflow-hidden">
                   <img
                     src={product1}
                     alt="The Stoic Trouser"
                     className="w-full h-full object-cover rounded-t-lg group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
-                <div className="p-6 bg-gradient-to-b from-card to-stoicers-dark-secondary">
-                  <h3 className="text-lg font-medium mb-2 text-stoicers-gold">Memento Mori" Oversized Tee – by STOICERS</h3>
-                  <p className="text-stoicers-highlight font-bold text-xl">3,000 PKR</p>
-                  <p className="text-stoicers-warm text-sm mt-2">CLive fully. Fearlessly. This t-shirt serves as a quiet rebellion against passivity. Inspired by the Stoic call to live with intention, its bold artwork and quote are a reminder: when your time comes, make sure you were truly living.
-                  Crafted from 220 GSM, 100% French Terry Cotton for lasting comfort and structure.</p>
+                <div className="p-4 bg-gradient-to-b from-card to-stoicers-dark-secondary flex-1 flex flex-col justify-between">
+                  <h3 className="text-base font-medium mb-1 text-stoicers-gold">Memento Mori" Oversized Tee – by STOICERS</h3>
+                  <p className="text-stoicers-highlight font-bold text-lg">3,000 PKR</p>
                 </div>
               </CardContent>
             </Card>
 
             {/* T-Shirt */}
-            <Card className="bg-card border-border shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105 group">
-              <CardContent className="p-0">
-                <div className="aspect-square bg-stoicers-dark-secondary rounded-t-lg overflow-hidden">
+            <Card className="bg-card border-border shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105 max-h-[580px] mx-auto">
+              <CardContent className="p-0 h-full flex flex-col">
+                <div className="aspect-[4/5] bg-stoicers-dark-secondary rounded-t-lg overflow-hidden">
                   <img
                     src={product2}
                     alt="The Wisdom Tee"
                     className="w-full h-full object-cover rounded-t-lg group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
-                <div className="p-6 bg-gradient-to-b from-card to-stoicers-dark-secondary">
-                  <h3 className="text-lg font-medium mb-2 text-stoicers-gold">Invincible" Oversized Tee – by STOICERS</h3>
-                  <p className="text-stoicers-highlight font-bold text-xl">3,000 PKR</p>
-                  <p className="text-stoicers-warm text-sm mt-2">This t-shirt serves as a virtue for those who refuse to quit, who won't back down or give in, no matter the cost. Inspired by the core Stoic principle: True strength lies not in survival, but in how you choose to live. Wear it not just to be seen, but to be remembered for what you stood for.
-                  Crafted from 220 GSM, 100% French Terry Cotton for lasting comfort and structure.</p>
+                <div className="p-4 bg-gradient-to-b from-card to-stoicers-dark-secondary flex-1 flex flex-col justify-between">
+                  <h3 className="text-base font-medium mb-1 text-stoicers-gold">Invincible" Oversized Tee – by STOICERS</h3>
+                  <p className="text-stoicers-highlight font-bold text-lg">3,000 PKR</p>
+                  {/* Description removed */}
                 </div>
               </CardContent>
             </Card>
@@ -110,18 +106,22 @@ const Home = () => {
         </div>
       </section>
 
+
       {/* Brand Story Section */}
       <section className="py-20 bg-gradient-to-r from-stoicers-dark-secondary to-stoicers-accent relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-stoicers-gold/5 to-transparent"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="order-2 md:order-1">
-              <h2 className="text-5xl font-bold mb-8 text-stoicers-gold leading-tight">
-                STOICERS — Where Ancient Wisdom Meets Modern Style
+              <h2 className="text-6xl font-bold  text-stoicers-gold leading-tight catchy">
+                STOICERS
               </h2>
+              <h3 className="text-3xl font-bold mb-8 text-stoicers-gold leading-tight catchy">
+                Where Ancient Wisdom Meets Modern Style
+              </h3>
               <p className="text-stoicers-warm leading-relaxed mb-8 text-lg">
                 Stoicers embodies the timeless principles of Stoic philosophy through contemporary fashion.
-                We create garments that reflect strength, wisdom, and inner peace—clothing for those who
+                We create garments that reflect strength, wisdom, and inner peace. Clothing for those who
                 understand that true style comes from character, not trends.
               </p>
               <div className="flex space-x-4">
@@ -178,14 +178,14 @@ const Home = () => {
 
               {/* Floating badge */}
               <div className="absolute bottom-4 left-4 rounded-xl bg-black/60 backdrop-blur-md ring-1 ring-white/10 px-4 py-2">
-                <p className="text-xs tracking-widest text-stoicers-gold">PHILOSOPHY • 2025</p>
+                <p className="text-xs tracking-widest text-stoicers-gold">NEW ARRIVAL • 2025</p>
               </div>
             </div>
 
             {/* RIGHT: Copy + CTA */}
             <div className="text-center md:text-left space-y-8">
-              <h3 className="text-5xl md:text-6xl font-bold text-stoicers-gold italic leading-tight">
-                “You have power over your mind — not outside events.”
+              <h3 className="text-5xl md:text-6xl font-bold text-stoicers-gold italic leading-tight catchy">
+                “You have power over your mind, not outside events.”
               </h3>
 
               <p className="text-stoicers-warm/90 text-lg md:text-xl leading-relaxed">
