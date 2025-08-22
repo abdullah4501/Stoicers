@@ -11,8 +11,8 @@ const Register = () => {
         <div className="max-w-md mx-auto">
           <Card className="bg-card border-border shadow-elegant">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl font-bold">Join BASIQ</CardTitle>
-              <p className="text-basiq-warm">Create your account</p>
+              <CardTitle className="text-2xl font-bold text-stoicers-gold">Join STOICERS</CardTitle>
+              <p className="text-stoicers-warm">Create your account</p>
             </CardHeader>
             <CardContent className="space-y-6">
               <form className="space-y-4">
@@ -23,12 +23,12 @@ const Register = () => {
                 <Input type="email" placeholder="Email address" className="bg-background border-border h-12" />
                 <Input type="password" placeholder="Password" className="bg-background border-border h-12" />
                 <Input type="password" placeholder="Confirm password" className="bg-background border-border h-12" />
-                <Button variant="hero" size="xl" className="w-full">Create Account</Button>
+                <Button variant="hero" size="xl" className="w-full text-stoicers-warm">Create Account</Button>
               </form>
               <div className="text-center">
-                <p className="text-basiq-warm">
+                <p className="text-stoicers-warm">
                   Already have an account?{" "}
-                  <Link to="/login" className="text-basiq-beige hover:underline font-medium">Sign in</Link>
+                  <Link to="/login" className="text-stoicers-warm hover:underline font-medium">Sign in</Link>
                 </p>
               </div>
             </CardContent>

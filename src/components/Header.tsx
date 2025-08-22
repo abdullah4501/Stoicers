@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { Menu, Search, ShoppingCart, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,6 +7,25 @@ import { Link } from "react-router-dom";
 import stoicersLogoWhite from "@/assets/white.png";
 
 const Header = () => {
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    // On mount, set cart count from localStorage
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    // Sum the quantities for total items (not just products)
+    const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+    setCartCount(total);
+
+    // Listen to changes from anywhere (optional, for advanced apps)
+    window.addEventListener("cart-updated", () => {
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+      setCartCount(total);
+    });
+
+    return () => window.removeEventListener("cart-updated", () => { });
+  }, []);
+
   return (
     <header className="bg-background border-b border-border">
       {/* Announcement Bar */}
@@ -70,11 +90,23 @@ const Header = () => {
               </Link>
             </Button>
 
-            <Button variant="ghost" size="icon" asChild aria-label="Cart">
-              <Link to="/checkout">
-                <ShoppingCart className="w-5 h-5" />
-              </Link>
-            </Button>
+            <div className="relative">
+              <Button variant="ghost" size="icon" asChild aria-label="Cart">
+                <Link to="/cart">
+                  <ShoppingCart className="w-5 h-5" />
+                  {/* Badge */}
+                  {cartCount > 0 && (
+                    <span
+                      className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-0.5 shadow"
+                      style={{ minWidth: 20, textAlign: "center" }}
+                    >
+                      {cartCount}
+                    </span>
+                  )}
+                </Link>
+              </Button>
+            </div>
+
           </div>
         </div>
       </div>

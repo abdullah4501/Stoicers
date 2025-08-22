@@ -1,16 +1,53 @@
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import Layout from "@/components/Layout";
 import heroImage from "@/assets/hero.jpeg";
-import tshirtBeige from "@/assets/tshirt_display.jpeg";
-import model2 from "@/assets/model2.jpeg";
 import modelHero from "@/assets/model-hero.jpg";
 import collectionImage from "@/assets/DSC00171.jpg";
 import product1 from "@/assets/3.png";
 import product2 from "@/assets/6.png";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const Home = () => {
+  const [products, setProducts] = useState([]);
+  const [added, setAdded] = useState({}); // Track which product is "Added"
+  const navigate = useNavigate();
+
+    useEffect(() => {
+    axios.get(`${API_BASE_URL}/api/products`)
+      .then(res => setProducts(res.data.data || res.data))
+      .catch(() => setProducts([]));
+  }, []);
+
+  const handleAddToCart = (product) => {
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const idx = cart.findIndex(item => item.id === product.id);
+    if (idx > -1) {
+      cart[idx].quantity += 1;
+    } else {
+      cart.push({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: 1,
+        featured_image_url: product.featured_image_url,
+      });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    setAdded(a => ({ ...a, [product.id]: true }));
+    window.dispatchEvent(new Event("cart-updated"));
+    // Remove 'Added' after a short delay
+    setTimeout(() => setAdded(a => ({ ...a, [product.id]: false })), 1200);
+  };
+
+  // Format price
+  const formatPKR = (price) => price != null ? `Rs.${Number(price).toLocaleString()}` : "";
+
+  if (!products.length) return null;
   return (
     <Layout>
       {/* Hero Section */}
@@ -56,55 +93,54 @@ const Home = () => {
       </section>
 
 
-      {/* Summer Collection */}
-      <section className="py-20 bg-gradient-to-b from-background to-stoicers-dark-secondary">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-6xl font-bold mb-6 bg-gradient-to-r from-stoicers-gold to-stoicers-highlight bg-clip-text text-transparent catchy">
-              Stoicers Summer Drop 25'
-            </h2>
-            <p className="text-stoicers-warm text-lg max-w-2xl mx-auto">
-              Embrace the wisdom of ancient philosophy with our modern interpretations of timeless wardrobe essentials.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-card border-border shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105 max-h-[580px] mx-auto">
-              <CardContent className="p-0 h-full flex flex-col">
-                <div className="aspect-[4/5] bg-stoicers-dark-secondary rounded-t-lg overflow-hidden">
-                  <img
-                    src={product1}
-                    alt="The Stoic Trouser"
-                    className="w-full h-full object-cover rounded-t-lg group-hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-4 bg-gradient-to-b from-card to-stoicers-dark-secondary flex-1 flex flex-col justify-between">
-                  <h3 className="text-base font-medium mb-1 text-stoicers-gold">Memento Mori" Oversized Tee – by STOICERS</h3>
-                  <p className="text-stoicers-highlight font-bold text-lg">3,000 PKR</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* T-Shirt */}
-            <Card className="bg-card border-border shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105 max-h-[580px] mx-auto">
-              <CardContent className="p-0 h-full flex flex-col">
-                <div className="aspect-[4/5] bg-stoicers-dark-secondary rounded-t-lg overflow-hidden">
-                  <img
-                    src={product2}
-                    alt="The Wisdom Tee"
-                    className="w-full h-full object-cover rounded-t-lg group-hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-4 bg-gradient-to-b from-card to-stoicers-dark-secondary flex-1 flex flex-col justify-between">
-                  <h3 className="text-base font-medium mb-1 text-stoicers-gold">Invincible" Oversized Tee – by STOICERS</h3>
-                  <p className="text-stoicers-highlight font-bold text-lg">3,000 PKR</p>
-                  {/* Description removed */}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+    <section className="py-20 bg-gradient-to-b from-background to-stoicers-dark-secondary">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-6xl font-bold mb-6 bg-gradient-to-r from-stoicers-gold to-stoicers-highlight bg-clip-text text-transparent catchy">
+            Stoicers Summer Drop 25'
+          </h2>
+          <p className="text-stoicers-warm text-lg max-w-2xl mx-auto">
+            Embrace the wisdom of ancient philosophy with our modern interpretations of timeless wardrobe essentials.
+          </p>
         </div>
-      </section>
+        <div className="grid md:grid-cols-2 gap-8">
+          {products.map((product) => (
+            <Card key={product.id} className="bg-card border-border shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105 max-h-[580px] mx-auto">
+              <CardContent className="p-0 h-full flex flex-col">
+                <div className="aspect-[4/5] bg-stoicers-dark-secondary rounded-t-lg overflow-hidden">
+                  <img
+                    src={product.featured_image_url}
+                    alt={product.name}
+                    className="w-full h-full object-cover rounded-t-lg group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-4 bg-gradient-to-b from-card to-stoicers-dark-secondary flex-1 flex flex-col justify-between">
+                  <h3 className="text-base font-medium mb-1 text-stoicers-gold">{product.name}</h3>
+                  <p className="text-stoicers-highlight font-bold text-lg">{formatPKR(product.price)}</p>
+                  <div className="flex gap-2 mt-4">
+                    <Button
+                      variant="outline"
+                      className="flex-1"
+                      onClick={() => handleAddToCart(product)}
+                      disabled={added[product.id]}
+                    >
+                      {added[product.id] ? "Added" : "+ Add to Cart"}
+                    </Button>
+                    <Button
+                      variant="hero"
+                      className="flex-1"
+                      onClick={() => navigate(`/checkout?product_id=${product.id}`)}
+                    >
+                      Buy Now
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
 
 
       {/* Brand Story Section */}
