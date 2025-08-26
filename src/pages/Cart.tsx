@@ -3,9 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import { Link } from "react-router-dom";
-import {X} from "lucide-react"
-
-
+import { X, Plus, Minus } from "lucide-react";
 
 // Helper
 const formatPKR = (price) =>
@@ -20,13 +18,37 @@ const Cart = () => {
         setItems(cart);
     }, []);
 
+    // Update localStorage whenever items change
+    const updateCart = (updatedItems) => {
+        setItems(updatedItems);
+        localStorage.setItem("cart", JSON.stringify(updatedItems));
+        window.dispatchEvent(new Event("cart-updated"));
+    };
+
     // Remove product from cart
     const handleRemove = (id) => {
         const updated = items.filter((item) => item.id !== id);
-        setItems(updated);
-        localStorage.setItem("cart", JSON.stringify(updated));
-        window.dispatchEvent(new Event("cart-updated"));
+        updateCart(updated);
     };
+
+    // Increment quantity
+    const handleIncrement = (id) => {
+        const updated = items.map((item) => 
+            item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+        updateCart(updated);
+    };
+
+    // Decrement quantity
+    const handleDecrement = (id) => {
+        const updated = items.map((item) => 
+            item.id === id && item.quantity > 1 
+                ? { ...item, quantity: item.quantity - 1 } 
+                : item
+        );
+        updateCart(updated);
+    };
+
     const totalAmount = items.reduce(
         (sum, item) => sum + item.price * item.quantity,
         0
@@ -59,14 +81,34 @@ const Cart = () => {
                                                 <div className="font-bold text-lg text-stoicers-gold">
                                                     {item.name}
                                                 </div>
-                                                <div className="text-stoicers-warm">
-                                                    Quantity: <span className="font-medium">{item.quantity}</span>
+                                                <div className="flex items-center gap-3 mt-2">
+                                                    <span className="text-stoicers-warm">Quantity:</span>
+                                                    <div className="flex items-center gap-2">
+                                                        <Button
+                                                            variant="outline"
+                                                            size="sm"
+                                                            className="h-8 w-8 p-0"
+                                                            onClick={() => handleDecrement(item.id)}
+                                                            disabled={item.quantity <= 1}
+                                                        >
+                                                            <Minus className="w-4 h-4" />
+                                                        </Button>
+                                                        <span className="font-medium min-w-[2rem] text-center">
+                                                            {item.quantity}
+                                                        </span>
+                                                        <Button
+                                                            variant="outline"
+                                                            size="sm"
+                                                            className="h-8 w-8 p-0"
+                                                            onClick={() => handleIncrement(item.id)}
+                                                        >
+                                                            <Plus className="w-4 h-4" />
+                                                        </Button>
+                                                    </div>
                                                 </div>
-                                                <div className="text-stoicers-highlight font-bold">
+                                                <div className="text-stoicers-highlight font-bold mt-1">
                                                     {formatPKR(item.price)}{" "}
-                                                    <span className="font-normal text-base text-stoicers-warm ml-2">
-                                                        x {item.quantity} = {formatPKR(item.price * item.quantity)}
-                                                    </span>
+                                                   
                                                 </div>
                                             </div>
                                             <Button
@@ -78,7 +120,6 @@ const Cart = () => {
                                             >
                                                 <X className="w-5 h-5 text-red-500" />
                                             </Button>
-
                                         </div>
                                     ))}
                                 </div>

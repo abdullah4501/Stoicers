@@ -71,7 +71,7 @@ const Checkout = () => {
         payload = {
           items: [{
             product_id: product?.id,
-            quantity: 1, // or use a quantity field
+            quantity: form.quantity,
           }],
           ...form,
         };
@@ -209,20 +209,22 @@ const Checkout = () => {
                   required
                 />
               </div>
-              <div>
-                <label htmlFor="quantity" className="block mb-1 font-medium text-sm">
-                  Quantity
-                </label>
-                <Input
-                  id="quantity"
-                  name="quantity"
-                  type="number"
-                  min={1}
-                  className="bg-background border-border h-12"
-                  value={form.quantity}
-                  onChange={handleChange}
-                />
-              </div>
+              {productId && (
+                <div>
+                  <label htmlFor="quantity" className="block mb-1 font-medium text-sm">
+                    Quantity
+                  </label>
+                  <Input
+                    id="quantity"
+                    name="quantity"
+                    type="number"
+                    min={1}
+                    className="bg-background border-border h-12"
+                    value={form.quantity}
+                    onChange={handleChange}
+                  />
+                </div>
+              )}
             </form>
 
             <Card className="bg-card border-border">
