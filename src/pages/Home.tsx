@@ -7,8 +7,6 @@ import Layout from "@/components/Layout";
 import heroImage from "@/assets/hero.jpeg";
 import modelHero from "@/assets/model-hero.jpg";
 import collectionImage from "@/assets/DSC00171.jpg";
-import product1 from "@/assets/3.png";
-import product2 from "@/assets/6.png";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -103,40 +101,61 @@ const Home = () => {
             Embrace the wisdom of ancient philosophy with our modern interpretations of timeless wardrobe essentials.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6">
           {products.map((product) => (
-            <Card key={product.id} className="bg-card border-border shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105 max-h-[580px] mx-auto">
-              <CardContent className="p-0 h-full flex flex-col">
-                <div className="aspect-[4/5] bg-stoicers-dark-secondary rounded-t-lg overflow-hidden">
-                  <img
-                    src={product.featured_image_url}
-                    alt={product.name}
-                    className="w-full h-full object-cover rounded-t-lg group-hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-4 bg-gradient-to-b from-card to-stoicers-dark-secondary flex-1 flex flex-col justify-between">
-                  <h3 className="text-base font-medium mb-1 text-stoicers-gold">{product.name}</h3>
-                  <p className="text-stoicers-highlight font-bold text-lg">{formatPKR(product.price)}</p>
-                  <div className="flex gap-2 mt-4">
-                    <Button
-                      variant="outline"
-                      className="flex-1"
-                      onClick={() => handleAddToCart(product)}
-                      disabled={added[product.id]}
-                    >
-                      {added[product.id] ? "Added" : "+ Add to Cart"}
-                    </Button>
-                    <Button
-                      variant="hero"
-                      className="flex-1"
-                      onClick={() => navigate(`/checkout?product_id=${product.id}`)}
-                    >
-                      Buy Now
-                    </Button>
+            <Link
+              key={product.id}
+              to={`/product/${product.slug}`}
+              style={{ textDecoration: 'none' }}
+              className="block group" 
+            >
+              <Card className="bg-card border-border shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105 h-full flex flex-col">
+                <CardContent className="p-0 h-full flex flex-col">
+                  <div className=" bg-stoicers-dark-secondary rounded-t-lg overflow-hidden">
+                    <img
+                      src={product.featured_image_url}
+                      alt={product.name}
+                      className="w-full h-full max-h-[512px] object-cover rounded-t-lg group-hover:scale-110 transition-transform duration-500"
+                    />
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                  <div className="p-4 bg-gradient-to-b from-card to-stoicers-dark-secondary flex-1 flex flex-col">
+                    <div className="flex-1 mb-4">
+                      <h3 className="text-lg font-semibold mb-2 text-stoicers-gold line-clamp-2 min-h-[3.5rem]">
+                        {product.name}
+                      </h3>
+                      <p className="text-stoicers-highlight font-bold text-xl">
+                        {formatPKR(product.price)}
+                      </p>
+                    </div>
+                    <div className="flex gap-2 mt-auto">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="flex-1 text-xs px-2"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleAddToCart(product);
+                        }}
+                        disabled={added[product.id]}
+                      >
+                        {added[product.id] ? "Added" : "+ Cart"}
+                      </Button>
+                      <Button
+                        variant="hero"
+                        size="sm"
+                        className="flex-1 text-xs px-2"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigate(`/checkout?product_id=${product.id}`);
+                        }}
+                      >
+                        Buy Now
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>
