@@ -30,6 +30,9 @@ const ProductDetail = () => {
             );
             setRelatedProduct(rel);
           });
+        })
+        .catch((error) => {
+          console.error("Error fetching product:", error);
         });
     }
   }, [slug]);
@@ -41,10 +44,48 @@ const ProductDetail = () => {
   }
 
   // Prepare productImages array: featured + gallery
-  const productImages = [
-    product.featured_image_url,
-    ...(product.images_urls || []),
-  ].filter(Boolean);
+  const productImages = [];
+  
+  // Add featured image first
+  if (product.featured_image_url) {
+    productImages.push(product.featured_image_url);
+  }
+  
+  // Add gallery images from the images field
+  if (product.images_urls && Array.isArray(product.images_urls)) {
+    productImages.push(...product.images_urls);
+  }
+  
+  // If no images available, use a placeholder
+  if (productImages.length === 0) {
+    productImages.push('/api/placeholder/400/400');
+  }
+
+  // Add to cart function
+  const handleAddToCart = () => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    
+    // Check if product already exists in cart
+    const existingIndex = cart.findIndex(item => item.id === product.id);
+    
+    if (existingIndex > -1) {
+      // Update quantity if product exists
+      cart[existingIndex].quantity += quantity;
+    } else {
+      // Add new product to cart
+      cart.push({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        featured_image_url: product.featured_image_url,
+        quantity: quantity,
+        size: selectedSize
+      });
+    }
+    
+    localStorage.setItem("cart", JSON.stringify(cart));
+    window.dispatchEvent(new Event("cart-updated"));
+  };
 
   // Price formatter
   const formatPKR = (price) =>
@@ -56,39 +97,41 @@ const ProductDetail = () => {
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Product Images */}
           <div className="space-y-4">
-            <div className="aspect-square bg-basiq-dark-secondary rounded-lg overflow-hidden">
+            <div className="aspect-square bg-stoicers-dark-secondary rounded-lg overflow-hidden">
               <img
                 src={productImages[selectedImage]}
                 alt={product.name}
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="grid grid-cols-4 gap-4">
-              {productImages.map((image, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedImage(index)}
-                  className={`aspect-square bg-basiq-dark-secondary rounded-lg overflow-hidden border-2 transition-colors ${
-                    selectedImage === index
-                      ? "border-basiq-beige"
-                      : "border-transparent"
-                  }`}
-                >
-                  <img
-                    src={image}
-                    alt={`Product view ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              ))}
-            </div>
+            {productImages.length > 1 && (
+              <div className="grid grid-cols-4 gap-4">
+                {productImages.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedImage(index)}
+                    className={`aspect-square bg-stoicers-dark-secondary rounded-lg overflow-hidden border-2 transition-colors ${
+                      selectedImage === index
+                        ? "border-stoicers-gold"
+                        : "border-transparent hover:border-stoicers-warm"
+                    }`}
+                  >
+                    <img
+                      src={image}
+                      alt={`Product view ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Product Details */}
           <div className="space-y-8">
             <div>
-              <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
-              <p className="text-2xl font-bold text-basiq-beige">
+              <h1 className="text-3xl font-bold mb-4 text-stoicers-gold">{product.name}</h1>
+              <p className="text-2xl font-bold text-stoicers-highlight">
                 {formatPKR(product.price)}
               </p>
             </div>
@@ -136,7 +179,12 @@ const ProductDetail = () => {
             </div>
 
             <div className="space-y-4">
-              <Button variant="basiq-dark" size="xl" className="w-full">
+              <Button 
+                variant="outline" 
+                size="xl" 
+                className="w-full"
+                onClick={handleAddToCart}
+              >
                 ADD TO CART
               </Button>
               <Link
@@ -149,11 +197,14 @@ const ProductDetail = () => {
               </Link>
             </div>
 
-            <div>
-              <p className="text-basiq-warm leading-relaxed">
-                {product.description}
-              </p>
-            </div>
+            {product.description && (
+              <div>
+                <h3 className="text-lg font-medium mb-4">Description</h3>
+                <p className="text-stoicers-warm leading-relaxed">
+                  {product.description}
+                </p>
+              </div>
+            )}
 
             {/* You may also like */}
             {relatedProduct && (
@@ -162,7 +213,7 @@ const ProductDetail = () => {
                 <Card className="bg-card border-border">
                   <CardContent className="p-4">
                     <div className="flex items-center gap-4">
-                      <div className="w-20 h-20 bg-basiq-dark-secondary rounded-lg overflow-hidden">
+                      <div className="w-20 h-20 bg-stoicers-dark-secondary rounded-lg overflow-hidden">
                         <img
                           src={relatedProduct.featured_image_url}
                           alt={relatedProduct.name}
@@ -170,18 +221,18 @@ const ProductDetail = () => {
                         />
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-medium mb-1">
+                        <h4 className="font-medium mb-1 text-stoicers-gold">
                           {relatedProduct.name}
                         </h4>
                         <div className="flex items-center gap-2">
-                          <span className="text-basiq-beige font-bold">
+                          <span className="text-stoicers-highlight font-bold">
                             {formatPKR(relatedProduct.price)}
                           </span>
                         </div>
                       </div>
                       <Link to={`/product/${relatedProduct.slug}`}>
-                        <Button variant="basiq-dark" size="sm">
-                          + View
+                        <Button variant="outline" size="sm">
+                          View
                         </Button>
                       </Link>
                     </div>
